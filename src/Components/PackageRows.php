@@ -23,8 +23,8 @@ class PackageRows extends Component
             $child = $children[$i];
             ?>
             <tr <?php if ($i === count($children) - 1) { ?> hx-get="./packages/?page=<?=$this->getProperty('page') + 1?>" hx-trigger="revealed" hx-swap="afterend" <?php } ?>>
-                <td><?=$child['name']?></td>
-                <td><?=$child['external_id']?></td>
+                <td><a href="/package/<?=$child['id']?>/"><?=$child['name']?></a></td>
+                <td><a href="/user/<?=$child['owner_id']?>/"><?=$child['external_id']?></a></td>
             </tr>
             <?php
         }
