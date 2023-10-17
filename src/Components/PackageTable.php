@@ -24,7 +24,6 @@ class PackageTable extends Component
                 <tr>
                     <th>Author</th>
                     <th>Name</th>
-                    <th>Version</th>
                 </tr>
             </thead>
             <tbody id="search-results">

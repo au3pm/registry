@@ -25,16 +25,14 @@ class PackageRows extends Component
                 ?>
                 <tr hx-get="./packages/?page=<?=$this->getProperty('page') + 1?>" hx-trigger="revealed" hx-swap="afterend">
                     <td><?=$child['name']?></td>
-                    <td><?=$child['author']?></td>
-                    <td><?=$child['version']?></td>
+                    <td><?=$child['external_id']?></td>
                 </tr>
                 <?php
             } else {
                 ?>
                 <tr>
                     <td><?=$child['name']?></td>
-                    <td><?=$child['author']?></td>
-                    <td><?=$child['version']?></td>
+                    <td><?=$child['external_id']?></td>
                 </tr>
                 <?php
             }
