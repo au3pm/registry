@@ -20,6 +20,30 @@ SimpleRouter::get('/', function() {
     return Page::make()->setChildren([$table])->render();
 });
 
+SimpleRouter::get('/packages/', function() {
+    $search = filter_input(INPUT_GET, 'search', FILTER_UNSAFE_RAW);
+    $page = filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT);
+    $packageRows = PackageRows::make();
+
+    if ($page !== null) {
+        $packageRows->setPage($page);
+    }
+
+    if ($search !== null) {
+        $packageRows->setSearch($search);
+    }
+
+    return $packageRows->render();
+});
+
+SimpleRouter::get('/package/{package_id}/', function($packageId) {
+    //
+});
+
+SimpleRouter::get('/user/{user_id}/', function($userId) {
+    //
+});
+
 SimpleRouter::get('/not-found', function() {
     response()->httpCode(404);
     return 'Not found';
