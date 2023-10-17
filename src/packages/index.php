@@ -8,13 +8,6 @@ $page = match ($page) {
 };
 
 $search = filter_input(INPUT_GET, 'search', FILTER_UNSAFE_RAW);
-
-/*
-var_dump(
-    filter_input_array(INPUT_GET, ['page' => FILTER_VALIDATE_INT, 'search' => FILTER_UNSAFE_RAW], false)
-);
-*/
-
 ?>
 
 <tr>
