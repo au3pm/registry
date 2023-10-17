@@ -37,7 +37,7 @@ class Database extends PDO {
     }
 
     public function getPackages($page) {
-        $stmt = $this->prepare('SELECT * FROM packages LIMIT 20 OFFSET ' . ($page - 1) * 20);
+        $stmt = $this->prepare('SELECT packages.*, owners.external_id FROM packages LEFT JOIN owners ON packages.owner_id = owners.id LIMIT 20 OFFSET ' . ($page - 1) * 20);
         $stmt->execute();
         return $stmt->fetchAll();
     }
