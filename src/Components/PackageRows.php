@@ -21,21 +21,12 @@ class PackageRows extends Component
 
         for ($i = 0; $i < count($children); $i++) {
             $child = $children[$i];
-            if ($i === count($children) - 1) {
-                ?>
-                <tr hx-get="./packages/?page=<?=$this->getProperty('page') + 1?>" hx-trigger="revealed" hx-swap="afterend">
-                    <td><?=$child['name']?></td>
-                    <td><?=$child['external_id']?></td>
-                </tr>
-                <?php
-            } else {
-                ?>
-                <tr>
-                    <td><?=$child['name']?></td>
-                    <td><?=$child['external_id']?></td>
-                </tr>
-                <?php
-            }
+            ?>
+            <tr <?php if ($i === count($children) - 1) { ?> hx-get="./packages/?page=<?=$this->getProperty('page') + 1?>" hx-trigger="revealed" hx-swap="afterend" <?php } ?>>
+                <td><?=$child['name']?></td>
+                <td><?=$child['external_id']?></td>
+            </tr>
+            <?php
         }
     }
 }
