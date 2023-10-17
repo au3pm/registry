@@ -36,8 +36,20 @@ class Database extends PDO {
         //$this->exec('CREATE TABLE IF NOT EXISTS packages (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, author TEXT, version TEXT, repo TEXT, sha TEXT)');
     }
 
-    public function getPackages($page) {
-        $stmt = $this->prepare('SELECT packages.*, owners.external_id FROM packages LEFT JOIN owners ON packages.owner_id = owners.id LIMIT 20 OFFSET ' . ($page - 1) * 20);
+    public function getPackages($page, $search = null) {
+        $query = "SELECT packages.*, owners.external_id FROM packages LEFT JOIN owners ON packages.owner_id = owners.id";
+
+        if ($search !== null && $search !== '') {
+            if (! preg_match('/^[a-zA-Z0-9\.]+$/', $search)) {
+                throw new \Exception('Invalid search string');
+            }
+
+            $query .= " WHERE packages.name LIKE '%{$search}%'";
+        }
+
+        $query .= " LIMIT 20 OFFSET " . ($page - 1) * 20;
+
+        $stmt = $this->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll();
     }
