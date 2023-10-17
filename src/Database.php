@@ -22,7 +22,7 @@ class Database extends PDO {
 
         switch (getenv('DB_DRIVER')) {
             case 'mysql':
-                parent::__construct(sprintf('mysql://%s:%s@%s/%s', getenv('DB_USER'), getenv('DB_PASS'), getenv('DB_HOST'), getenv('DB_NAME')));
+                parent::__construct(sprintf('mysql:host=%s;dbname=%s;charset=utf8', getenv('DB_HOST'), getenv('DB_NAME'), getenv('DB_USER'), getenv('DB_PASS')));
                 break;
             case 'sqlite':
                 parent::__construct('sqlite:../database.db');
