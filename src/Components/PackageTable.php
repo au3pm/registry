@@ -22,8 +22,8 @@ class PackageTable extends Component
         <table hx-indicator=".htmx-indicator">
             <thead>
                 <tr>
-                    <th>Author</th>
                     <th>Name</th>
+                    <th>Author</th>
                 </tr>
             </thead>
             <tbody id="search-results">
