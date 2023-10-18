@@ -44,23 +44,19 @@ SimpleRouter::get('/user/{user_id}/', function($userId) {
     //
 });
 
-SimpleRouter::get('/not-found', function() {
-    response()->httpCode(404);
-    return 'Not found';
-});
-
-SimpleRouter::get('/forbidden', function() {
-    response()->httpCode(403);
-    return 'Forbidden';
-});
-
 SimpleRouter::error(function (Request $request, \Exception $exception) {
     switch($exception->getCode()) {
         // Page not found
         case 404:
-            response()->redirect('/not-found');
+            $request->setRewriteCallback(function() {
+                response()->httpCode(404);
+                return Page::make()->setChildren(['<h1>Not found</h1>'])->render();
+            });
         // Forbidden
         case 403:
-            response()->redirect('/forbidden');
+            $request->setRewriteCallback(function() {
+                response()->httpCode(403);
+                return Page::make()->setChildren(['<h1>Forbidden</h1>'])->render();
+            });
     }
 });
