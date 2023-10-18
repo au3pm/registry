@@ -13,7 +13,7 @@ class PackageTable extends Component
             class="form-control"
             type="search"
             name="search"
-            placeholder="Begin Typing To Search Users..."
+            placeholder="Begin typing to search package names..."
             hx-get="./packages/"
             hx-trigger="keyup changed delay:500ms, search"
             hx-target="#search-results"
