@@ -4,7 +4,7 @@ namespace Au3pm\Registry\Components;
 
 use Genius257\View\Component;
 
-class Table extends Component
+class Tbody extends Component
 {
     protected function _render() {
         ?>
