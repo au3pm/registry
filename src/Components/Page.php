@@ -13,6 +13,7 @@ class Page extends Component {
         <head>
             <title>AutoIt3 Package Registry</title>
             <script src="https://unpkg.com/htmx.org@1.9.5"></script>
+            <link rel="stylesheet" href="/css/main.css">
         </head>
 
         <body>
